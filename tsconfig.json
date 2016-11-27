@@ -1,0 +1,19 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "preserveConstEnums": true,
+        "outDir": "dist/",
+        "sourceMap": true,
+        "target": "es6",
+        "experimentalDecorators" : true
+    },
+    "include": [
+        "src/**/*",
+        "typings/index.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
