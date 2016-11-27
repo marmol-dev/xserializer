@@ -24,7 +24,7 @@ function Serialize(replaceWithId = true) {
     return function (target, propertyKey) {
         const properties = initSerializerProperties(target.constructor);
         properties.push(propertyKey);
-        Reflect.defineMetadata('serialize', { replaceWithId: replaceWithId }, target, propertyKey);
+        Reflect.defineMetadata('serialize', { replaceWithId }, target, propertyKey);
     };
 }
 exports.Serialize = Serialize;

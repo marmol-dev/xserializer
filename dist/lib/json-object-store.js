@@ -1,7 +1,7 @@
 "use strict";
 class JSONObjectStore {
     constructor(_settings) {
-        Object.assign(this, { _settings: _settings });
+        Object.assign(this, { _settings });
         this._map = {};
     }
     add(obj) {
