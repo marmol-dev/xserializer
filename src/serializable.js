@@ -41,4 +41,3 @@ function Serializable() {
     };
 }
 exports.Serializable = Serializable;
-//# sourceMappingURL=serializable.js.map

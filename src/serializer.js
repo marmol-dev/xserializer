@@ -108,4 +108,3 @@ var Serializer = (function () {
 }());
 exports.__esModule = true;
 exports["default"] = Serializer;
-//# sourceMappingURL=serializer.js.map

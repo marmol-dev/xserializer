@@ -28,4 +28,3 @@ var JSONObjectStore = (function () {
 }());
 exports.__esModule = true;
 exports["default"] = JSONObjectStore;
-//# sourceMappingURL=json-object-store.js.map
