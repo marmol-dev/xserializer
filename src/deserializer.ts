@@ -89,7 +89,7 @@ export class Deserializer {
         }
     }
 
-    private updateReferences(obj: any){
+    private updateReferences(obj: any) : any {
         if (Array.isArray(obj)){
             return obj.map((e : any) => this.updateReferences(e));
         } else if (isObject(obj)){
@@ -114,7 +114,7 @@ export class Deserializer {
         }
     }
 
-    private getLinkedObject(part : any) {
+    private getLinkedObject(part : any) : any {
         if (Array.isArray(part)){
             return part.map((e: any) => this.getLinkedObject(e));
         } else if (isObject(part)) {

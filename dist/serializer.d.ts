@@ -11,7 +11,7 @@ export interface JSONWithId {
     [prop: string]: JSONId;
 }
 export declare function getDefaultSettings(): SerializerSettings;
-export default class Serializer {
+export declare class Serializer {
     static guid(): string;
     private _base;
     private _settings;

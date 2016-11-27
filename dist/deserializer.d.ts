@@ -1,6 +1,6 @@
 import { SerializerSettings } from './serializer';
 export declare type ConstructorProvider = (name: string) => Function;
-export default class Deserializer {
+export declare class Deserializer {
     private _base;
     private _constructorProvider;
     private _objectStore;

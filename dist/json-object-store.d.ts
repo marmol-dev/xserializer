@@ -5,7 +5,7 @@ export default class JSONObjectStore {
     constructor(_settings: SerializerSettings);
     add(obj: JSONWithId): void;
     get(id: JSONId): JSONWithId;
-    objects: {
+    readonly objects: {
         [className: string]: {
             [id: string]: JSONWithId;
         };
