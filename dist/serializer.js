@@ -99,6 +99,5 @@ class Serializer {
         return this.serializePart(this._base);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Serializer;
+exports.Serializer = Serializer;
 //# sourceMappingURL=serializer.js.map

@@ -8,7 +8,7 @@ function isObject(e: any) : boolean {
 
 export type ConstructorProvider = (name : string) => Function;
 
-export default class Deserializer {
+export class Deserializer {
     private _base : any;
     private _constructorProvider : ConstructorProvider;
     private _objectStore: JSONObjectStore;

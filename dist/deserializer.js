@@ -126,6 +126,5 @@ class Deserializer {
         return this.getLinkedObject(this._base);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Deserializer;
+exports.Deserializer = Deserializer;
 //# sourceMappingURL=deserializer.js.map

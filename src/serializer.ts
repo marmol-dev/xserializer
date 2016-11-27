@@ -30,7 +30,7 @@ export function getDefaultSettings() : SerializerSettings {
 
 const serializedSymbol = Symbol();
 
-export default class Serializer {
+export class Serializer {
 
     public static guid() {
         function s4() {
