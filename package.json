@@ -1,6 +1,6 @@
 {
   "name": "xserializer",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Serialize and Deserialize tools for JSON",
   "main": "dist/lib/index.js",
   "typings": "dist/lib/index.d.ts",
