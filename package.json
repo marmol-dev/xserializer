@@ -2,8 +2,8 @@
   "name": "xserializer",
   "version": "0.0.5",
   "description": "Serialize and Deserialize tools for JSON",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/lib/index.js",
+  "typings": "dist/lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +17,9 @@
   "license": "ISC",
   "dependencies": {
     "reflect-metadata": "^0.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomymolina/xserializer.git"
   }
 }

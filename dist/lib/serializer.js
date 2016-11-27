@@ -14,7 +14,7 @@ exports.getDefaultSettings = getDefaultSettings;
 const serializedSymbol = Symbol();
 class Serializer {
     constructor(_base, _settings = getDefaultSettings()) {
-        Object.assign(this, { _base, _settings });
+        Object.assign(this, { _base: _base, _settings: _settings });
     }
     static guid() {
         function s4() {

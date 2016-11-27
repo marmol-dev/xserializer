@@ -6,7 +6,7 @@ function isObject(e) {
 }
 class Deserializer {
     constructor(_base, _settings = serializer_1.getDefaultSettings()) {
-        Object.assign(this, { _settings, _base });
+        Object.assign(this, { _settings: _settings, _base: _base });
         this._objectStore = new json_object_store_1.default(_settings);
     }
     get constructorProvider() {

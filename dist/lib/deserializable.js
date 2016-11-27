@@ -18,7 +18,7 @@ function Deserialize(replaceWithId = true) {
             Reflect.defineMetadata('deserializeProperties', deserializeProperties, target.constructor);
         }
         deserializeProperties.push(propertyKey);
-        Reflect.defineMetadata('deserialize', { replaceWithId }, target, propertyKey);
+        Reflect.defineMetadata('deserialize', { replaceWithId: replaceWithId }, target, propertyKey);
     };
 }
 exports.Deserialize = Deserialize;
