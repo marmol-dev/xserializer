@@ -1,0 +1,8 @@
+{
+  "name": "xserializer",
+  "dependencies": {},
+  "globalDependencies": {
+    "node": "registry:dt/node#6.0.0+20161110151007",
+    "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503"
+  }
+}

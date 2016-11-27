@@ -1,0 +1,21 @@
+{
+  "name": "xserializer",
+  "version": "0.0.3",
+  "description": "Serialize and Deserialize tools for JSON",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "serialize",
+    "deserialize",
+    "json",
+    "object"
+  ],
+  "author": "tomymolina <http://about.me/tomymolina>",
+  "license": "ISC",
+  "dependencies": {
+    "reflect-metadata": "^0.1.8"
+  }
+}
