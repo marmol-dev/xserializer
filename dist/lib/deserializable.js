@@ -2,7 +2,7 @@
 require('reflect-metadata');
 function Deserializable() {
     return function (constructor) {
-        let deserializeProperties = Reflect.getMetadata('deserializeProperties', constructor);
+        var deserializeProperties = Reflect.getMetadata('deserializeProperties', constructor);
         if (!deserializeProperties) {
             deserializeProperties = [];
             Reflect.defineMetadata('deserializeProperties', deserializeProperties, constructor);
@@ -10,15 +10,16 @@ function Deserializable() {
     };
 }
 exports.Deserializable = Deserializable;
-function Deserialize(replaceWithId = true) {
+function Deserialize(replaceWithId) {
+    if (replaceWithId === void 0) { replaceWithId = true; }
     return function (target, propertyKey) {
-        let deserializeProperties = Reflect.getMetadata('deserializeProperties', target.constructor);
+        var deserializeProperties = Reflect.getMetadata('deserializeProperties', target.constructor);
         if (!deserializeProperties) {
             deserializeProperties = [];
             Reflect.defineMetadata('deserializeProperties', deserializeProperties, target.constructor);
         }
         deserializeProperties.push(propertyKey);
-        Reflect.defineMetadata('deserialize', { replaceWithId }, target, propertyKey);
+        Reflect.defineMetadata('deserialize', { replaceWithId: replaceWithId }, target, propertyKey);
     };
 }
 exports.Deserialize = Deserialize;

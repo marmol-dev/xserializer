@@ -2,6 +2,7 @@
   "name": "xserializer",
   "dependencies": {},
   "globalDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "node": "registry:dt/node#6.0.0+20161110151007",
     "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503"
   }

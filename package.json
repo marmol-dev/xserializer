@@ -16,6 +16,7 @@
   "author": "tomymolina <http://about.me/tomymolina>",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8"
   },
   "repository": {

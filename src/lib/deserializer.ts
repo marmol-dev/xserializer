@@ -96,8 +96,11 @@ export class Deserializer {
             if (this.isReference(obj)){
                 return this._objectStore.get(this.getReferenceId(obj));
             } else {
-                for(let key in obj){
-                    obj[key] = this.updateReferences(obj[key]);
+                for(let key of Object.keys(obj)){
+                    const desc = Object.getOwnPropertyDescriptor(obj, key);
+                    if (desc && desc.writable) {
+                        obj[key] = this.updateReferences(obj[key]);
+                    }
                 }
                 return obj;
             }

@@ -1,3 +1,5 @@
+require('core-js');
+
 export * from './deserializer';
 export * from './serializer';
 export * from './deserializable';

@@ -6,7 +6,7 @@ require('reflect-metadata');
  * @returns {string[]} The serializeProperties of the class
  */
 function initSerializerProperties(constructor) {
-    let serializeProperties = Reflect.getMetadata('serializeProperties', constructor);
+    var serializeProperties = Reflect.getMetadata('serializeProperties', constructor);
     if (!serializeProperties) {
         serializeProperties = [];
         Reflect.defineMetadata('serializeProperties', serializeProperties, constructor);
@@ -20,11 +20,12 @@ function initSerializerProperties(constructor) {
  * @returns {(target:Object, propertyKey:string)=>undefined}
  * @constructor
  */
-function Serialize(replaceWithId = true) {
+function Serialize(replaceWithId) {
+    if (replaceWithId === void 0) { replaceWithId = true; }
     return function (target, propertyKey) {
-        const properties = initSerializerProperties(target.constructor);
+        var properties = initSerializerProperties(target.constructor);
         properties.push(propertyKey);
-        Reflect.defineMetadata('serialize', { replaceWithId }, target, propertyKey);
+        Reflect.defineMetadata('serialize', { replaceWithId: replaceWithId }, target, propertyKey);
     };
 }
 exports.Serialize = Serialize;
