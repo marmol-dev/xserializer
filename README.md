@@ -1,11 +1,9 @@
 # xserializer
 
-Tools to serialize class instances to JSON objects and deserialize JSON objects to it's correspondent class instances.
+Tools to serialize Javascript class instances to JSON objects and deserialize JSON objects to it's correspondent class instances.
 
 ## Installation
 `npm i --save xserializer`
-
-This is project is written in Typescript and compiled to **ES6**.
 
 ## Usage examples
 
@@ -97,9 +95,9 @@ Person {
 Hello, my name is Martin
 ```
 
-### Javascript (ES6)
+### Javascript (ES5)
 
-Go to [examples](dist/examples/) for ES6 compiled examples.
+Go to [examples](dist/examples/) for ES5 compiled examples.
 
 ## API docs
 
