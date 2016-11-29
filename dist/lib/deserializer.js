@@ -50,7 +50,8 @@ var Deserializer = (function () {
                 this._objectStore.add(obj);
             }
             if (!this.isReference(obj)) {
-                for (var key in obj) {
+                for (var _i = 0, _a = Object.keys(obj); _i < _a.length; _i++) {
+                    var key = _a[_i];
                     this.addToStorePart(obj[key]);
                 }
             }
@@ -68,8 +69,10 @@ var Deserializer = (function () {
         return object;
     };
     Deserializer.prototype.deserializeStore = function () {
-        for (var className in this._objectStore.objects) {
-            for (var objectId in this._objectStore.objects[className]) {
+        for (var _i = 0, _a = Object.keys(this._objectStore.objects); _i < _a.length; _i++) {
+            var className = _a[_i];
+            for (var _b = 0, _c = Object.keys(this._objectStore.objects[className]); _b < _c.length; _b++) {
+                var objectId = _c[_b];
                 this._objectStore.objects[className][objectId] = this.constructObject(this._objectStore.objects[className][objectId]);
             }
         }
@@ -84,14 +87,16 @@ var Deserializer = (function () {
                 return this._objectStore.get(this.getReferenceId(obj));
             }
             else {
-                for (var _i = 0, _a = Object.keys(obj); _i < _a.length; _i++) {
-                    var key = _a[_i];
-                    var desc = Object.getOwnPropertyDescriptor(obj, key);
-                    if (desc && desc.writable) {
+                if (this.isWithId(obj)) {
+                    return this._objectStore.get(this.getId(obj));
+                }
+                else {
+                    for (var _i = 0, _a = Object.keys(obj); _i < _a.length; _i++) {
+                        var key = _a[_i];
                         obj[key] = this.updateReferences(obj[key]);
                     }
+                    return obj;
                 }
-                return obj;
             }
         }
         else {
@@ -99,8 +104,10 @@ var Deserializer = (function () {
         }
     };
     Deserializer.prototype.updateStoreReferences = function () {
-        for (var className in this._objectStore.objects) {
-            for (var objectId in this._objectStore.objects[className]) {
+        for (var _i = 0, _a = Object.keys(this._objectStore.objects); _i < _a.length; _i++) {
+            var className = _a[_i];
+            for (var _b = 0, _c = Object.keys(this._objectStore.objects[className]); _b < _c.length; _b++) {
+                var objectId = _c[_b];
                 this._objectStore.objects[className][objectId] = this.updateReferences(this._objectStore.objects[className][objectId]);
             }
         }
@@ -120,7 +127,8 @@ var Deserializer = (function () {
                 }
                 else {
                     var toret = {};
-                    for (var key in toret) {
+                    for (var _i = 0, _a = Object.keys(part); _i < _a.length; _i++) {
+                        var key = _a[_i];
                         toret[key] = this.getLinkedObject(toret[key]);
                     }
                     return toret;

@@ -63,7 +63,7 @@ export class Deserializer {
             }
 
             if( !this.isReference(obj) ) {
-                for(let key in obj){
+                for(let key of Object.keys(obj)){
                     this.addToStorePart(obj[key]);
                 }
             }
@@ -82,8 +82,8 @@ export class Deserializer {
     }
 
     private deserializeStore() {
-        for(let className in this._objectStore.objects){
-            for(let objectId in this._objectStore.objects[className]){
+        for(let className of Object.keys(this._objectStore.objects)){
+            for(let objectId of Object.keys(this._objectStore.objects[className])){
                 this._objectStore.objects[className][objectId] = this.constructObject(this._objectStore.objects[className][objectId]);
             }
         }
@@ -96,13 +96,14 @@ export class Deserializer {
             if (this.isReference(obj)){
                 return this._objectStore.get(this.getReferenceId(obj));
             } else {
-                for(let key of Object.keys(obj)){
-                    const desc = Object.getOwnPropertyDescriptor(obj, key);
-                    if (desc && desc.writable) {
+                if (this.isWithId(obj)) {
+                    return this._objectStore.get(this.getId(obj));
+                } else {
+                    for (let key of Object.keys(obj)) {
                         obj[key] = this.updateReferences(obj[key]);
                     }
+                    return obj;
                 }
-                return obj;
             }
         } else {
             return obj;
@@ -110,8 +111,8 @@ export class Deserializer {
     }
 
     private updateStoreReferences() {
-        for(let className in this._objectStore.objects){
-            for(let objectId in this._objectStore.objects[className]){
+        for(let className of Object.keys(this._objectStore.objects)){
+            for(let objectId of Object.keys(this._objectStore.objects[className])){
                 this._objectStore.objects[className][objectId] = this.updateReferences(this._objectStore.objects[className][objectId] );
             }
         }
@@ -128,7 +129,7 @@ export class Deserializer {
                     return this._objectStore.get(this.getId(part));
                 } else {
                     let toret : any = {};
-                    for(let key in toret){
+                    for(let key of Object.keys(part)){
                         toret[key] = this.getLinkedObject(toret[key]);
                     }
                     return toret;
