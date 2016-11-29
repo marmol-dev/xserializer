@@ -14,12 +14,12 @@ class Person {
         this._posts = [];
     }
 
-    //@Serialize()
+    @Serialize()
     get name(): string {
         return this._name;
     }
 
-    //@Serialize()
+    @Serialize()
     get posts(): Post[] {
         return this._posts;
     }
@@ -47,12 +47,12 @@ class Post {
         this._author = author;
     }
 
-    //@Serialize()
+    @Serialize()
     get title(): string {
         return this._title;
     }
 
-    //@Serialize()
+    @Serialize()
     get author(): Person {
         return this._author;
     }
@@ -70,12 +70,11 @@ console.log(martin);
 console.log(martin.sayHello());
 console.log(separatorString);
 
-const serializer = new Serializer(martin);
+const serializer = new Serializer(martin, {operationMode:'both'});
 const martinJSON = serializer.serialize();
 
 console.log(inspect(martinJSON, {depth: 5}));
 console.log(separatorString);
-
 
 const deserializer = new Deserializer(martinJSON);
 deserializer.constructorProvider = (className: string) => {

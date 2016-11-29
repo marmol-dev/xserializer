@@ -3,9 +3,10 @@ function isObject(e: any) : boolean {
 }
 
 export interface SerializerSettings {
-    idPropertyName: string;
-    referencePropertyName: string;
-    internalPropertyName: string;
+    idPropertyName?: string;
+    referencePropertyName?: string;
+    internalPropertyName?: string;
+    operationMode?: 'serialize' | 'deserialize' | 'both';
 }
 
 export type JSONId = [string, string];
@@ -21,7 +22,8 @@ export interface JSONWithId {
 const DEFAULT_SETTINGS : SerializerSettings = {
     idPropertyName: '#',
     referencePropertyName: '@',
-    internalPropertyName: '_'
+    internalPropertyName: '_',
+    operationMode: 'both'
 };
 
 export function getDefaultSettings() : SerializerSettings {
@@ -46,7 +48,8 @@ export class Serializer {
     private _settings: SerializerSettings;
 
     constructor(_base: any, _settings: SerializerSettings = getDefaultSettings()){
-        Object.assign(this, {_base, _settings});
+        Object.assign(this, {_base});
+        this._settings = Object.assign(getDefaultSettings(), _settings);
     }
 
     private getIdPropertyName(part: any) : string {
@@ -72,28 +75,28 @@ export class Serializer {
     }
 
     private getSerializeProperties(part: any) : string[] {
+        if (this._settings.operationMode === 'deserialize'){
+            return [];
+        }
+
         let properties = Reflect.getMetadata('serializeProperties', part.constructor);
 
         if (!properties){
-            //if (part.constructor === Object || !part.constructor){
-                properties = Object.keys(part);
-            /*} else {
-                properties = [];
-            }*/
+            properties = Object.keys(part);
         }
 
         return properties;
     }
 
     private getDeserializeProperties(part: any): string[] {
+        if (this._settings.operationMode === 'serialize'){
+            return [];
+        }
+
         let properties = Reflect.getMetadata('deserializeProperties', part.constructor);
 
         if (!properties){
-            //if (part.constructor === Object || !part.constructor){
-                properties = Object.keys(part);
-            /*} else {
-                properties = [];
-            }*/
+            properties = Object.keys(part);
         }
 
         return properties;

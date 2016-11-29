@@ -5,7 +5,8 @@ function isObject(e) {
 var DEFAULT_SETTINGS = {
     idPropertyName: '#',
     referencePropertyName: '@',
-    internalPropertyName: '_'
+    internalPropertyName: '_',
+    operationMode: 'both'
 };
 function getDefaultSettings() {
     return Object.assign({}, DEFAULT_SETTINGS);
@@ -15,7 +16,8 @@ var serializedSymbol = Symbol();
 var Serializer = (function () {
     function Serializer(_base, _settings) {
         if (_settings === void 0) { _settings = getDefaultSettings(); }
-        Object.assign(this, { _base: _base, _settings: _settings });
+        Object.assign(this, { _base: _base });
+        this._settings = Object.assign(getDefaultSettings(), _settings);
     }
     Serializer.guid = function () {
         function s4() {
@@ -48,17 +50,21 @@ var Serializer = (function () {
         var _a;
     };
     Serializer.prototype.getSerializeProperties = function (part) {
+        if (this._settings.operationMode === 'deserialize') {
+            return [];
+        }
         var properties = Reflect.getMetadata('serializeProperties', part.constructor);
         if (!properties) {
-            //if (part.constructor === Object || !part.constructor){
             properties = Object.keys(part);
         }
         return properties;
     };
     Serializer.prototype.getDeserializeProperties = function (part) {
+        if (this._settings.operationMode === 'serialize') {
+            return [];
+        }
         var properties = Reflect.getMetadata('deserializeProperties', part.constructor);
         if (!properties) {
-            //if (part.constructor === Object || !part.constructor){
             properties = Object.keys(part);
         }
         return properties;

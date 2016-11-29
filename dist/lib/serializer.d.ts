@@ -1,7 +1,8 @@
 export interface SerializerSettings {
-    idPropertyName: string;
-    referencePropertyName: string;
-    internalPropertyName: string;
+    idPropertyName?: string;
+    referencePropertyName?: string;
+    internalPropertyName?: string;
+    operationMode?: 'serialize' | 'deserialize' | 'both';
 }
 export declare type JSONId = [string, string];
 export interface JSONReference {

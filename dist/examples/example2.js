@@ -13,7 +13,6 @@ var Person = (function () {
         this._posts = [];
     }
     Object.defineProperty(Person.prototype, "name", {
-        //@Serialize()
         get: function () {
             return this._name;
         },
@@ -21,7 +20,6 @@ var Person = (function () {
         configurable: true
     });
     Object.defineProperty(Person.prototype, "posts", {
-        //@Serialize()
         get: function () {
             return this._posts;
         },
@@ -46,6 +44,12 @@ var Person = (function () {
     ], Person.prototype, "_posts", void 0);
     __decorate([
         index_1.Serialize()
+    ], Person.prototype, "name", null);
+    __decorate([
+        index_1.Serialize()
+    ], Person.prototype, "posts", null);
+    __decorate([
+        index_1.Serialize()
     ], Person.prototype, "postsCount", null);
     Person = __decorate([
         index_1.Serializable(),
@@ -59,7 +63,6 @@ var Post = (function () {
         this._author = author;
     }
     Object.defineProperty(Post.prototype, "title", {
-        //@Serialize()
         get: function () {
             return this._title;
         },
@@ -67,7 +70,6 @@ var Post = (function () {
         configurable: true
     });
     Object.defineProperty(Post.prototype, "author", {
-        //@Serialize()
         get: function () {
             return this._author;
         },
@@ -80,6 +82,12 @@ var Post = (function () {
     __decorate([
         index_1.Deserialize()
     ], Post.prototype, "_author", void 0);
+    __decorate([
+        index_1.Serialize()
+    ], Post.prototype, "title", null);
+    __decorate([
+        index_1.Serialize()
+    ], Post.prototype, "author", null);
     Post = __decorate([
         index_1.Serializable(),
         index_1.Deserializable()
@@ -94,7 +102,7 @@ var martin = new Person('Martin');
 console.log(martin);
 console.log(martin.sayHello());
 console.log(separatorString);
-var serializer = new index_1.Serializer(martin);
+var serializer = new index_1.Serializer(martin, { operationMode: 'both' });
 var martinJSON = serializer.serialize();
 console.log(util_1.inspect(martinJSON, { depth: 5 }));
 console.log(separatorString);
